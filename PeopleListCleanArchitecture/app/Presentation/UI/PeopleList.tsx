@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, FlatList, Text, View, StyleSheet } from "react-native";
 import { container } from "../../Core/Container";
 import { TYPES } from "../../Core/Types";
 import { Persona } from "../../Domain/Entities/Persona";
 import { PeopleListViewModel } from "../ViewModels/PeopleListViewModel";
 
-const PeopleList = observer(() => {
-    const viewModel = container.get<PeopleListViewModel>(TYPES.PeopleListViewModel);
+export default function PeopleList() {
+    const [viewModel] = useState(() => container.get<PeopleListViewModel>(TYPES.PeopleListViewModel));
+    const [personas, setPersonas] = useState<Persona[]>([]);
+
+    useEffect(() => {
+        // Cargar las personas del ViewModel
+        setPersonas(viewModel.personasList);
+    }, [viewModel]);
 
     const renderItem = ({ item }: { item: Persona }) => (
         <View style={styles.item}>
@@ -20,7 +26,7 @@ const PeopleList = observer(() => {
         <SafeAreaView style={styles.container}>
             <Text style={styles.titulo}>Listado de Personas</Text>
             <FlatList
-                data={viewModel.personasList}
+                data={personas}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -30,7 +36,7 @@ const PeopleList = observer(() => {
             />
         </SafeAreaView>
     );
-});
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -69,9 +75,3 @@ const styles = StyleSheet.create({
         color: "#888",
     },
 });
-
-export default PeopleList;
-
-function observer(arg0: () => React.JSX.Element) {
-    throw new Error("Function not implemented.");
-}

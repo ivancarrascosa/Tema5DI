@@ -5,11 +5,12 @@ import { IGetListaPersonasUseCase } from "../Domain/Interfaces/IGetListaPersonas
 import { RepositoryPersona } from "../Data/Repositories/personaRepository";
 import { DefaultGetListaPersonasUseCase } from "../Domain/useCases/DefaultGetListaPersonasUseCase";
 import { PeopleListViewModel } from "../Presentation/ViewModels/PeopleListViewModel";
+import { RepositoryPersonasVacio } from "../Data/Repositories/PersonaRepositorioVacio";
 
 const container = new Container();
 
 // Binding del repositorio
-container.bind<IGetListaPersonas>(TYPES.IGetListaPersonas).to(RepositoryPersona);
+container.bind<IGetListaPersonas>(TYPES.IGetListaPersonas).to(RepositoryPersonasVacio);
 
 // Binding del use case
 container.bind<IGetListaPersonasUseCase>(TYPES.IGetListaPersonasUseCase).to(DefaultGetListaPersonasUseCase);
