@@ -1,5 +1,5 @@
 import { Persona } from "../Entities/Persona";
 
-interface IGetListaPersonas {
+export interface IGetListaPersonas {
     getListaPersonas(): Persona[]
 }

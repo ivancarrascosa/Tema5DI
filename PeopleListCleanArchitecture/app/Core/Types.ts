@@ -1,5 +1,5 @@
 const TYPES = {
     IGetListaPersonas: Symbol.for("IGetListaPersonas"),
-    IndexVM: Symbol.for("IndexVM"),
+    IGetListaPersonasUseCase: Symbol.for("IGetListaPersonasUseCase")
 };
 export { TYPES };

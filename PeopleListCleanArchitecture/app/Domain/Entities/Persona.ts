@@ -34,7 +34,7 @@ export class Persona {
     if (!valor) {
       throw new Error("Los apellidos no pueden estar vacíos");
     }
-    this.Apellidos = valor;
+    this.apellidos = valor;
   }
   //#endregion
 }
